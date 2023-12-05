@@ -12,11 +12,6 @@
       </tags>
   </entry>
   <entry>
-    <title>测试</title>
-    <url>/2023/12/05/%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>MybatisPlus的基本使用</title>
     <url>/2023/12/05/MybatisPlus%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="1-Mybatis-Plus的基本介绍"><a href="#1-Mybatis-Plus的基本介绍" class="headerlink" title="1.Mybatis-Plus的基本介绍"></a>1.Mybatis-Plus的基本介绍</h1><p>Mybatis-Plus是在Mybatis的基础上对Mybatis进行了一系列的简化，但这并不意味着使用了Mybatis-Plus就不使用Mybatis。</p>
@@ -25,6 +20,16 @@
         <tag>技术</tag>
         <tag>学习</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>测试</title>
+    <url>/2023/12/05/%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>测试用力一</title>
+    <url>/2023/12/05/%E6%B5%8B%E8%AF%95%E7%94%A8%E5%8A%9B%E4%B8%80/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>第一篇文章</title>
