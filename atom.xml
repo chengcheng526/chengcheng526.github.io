@@ -6,7 +6,7 @@
   <link href="https://chengcheng526.github.io/atom.xml" rel="self"/>
   
   <link href="https://chengcheng526.github.io/"/>
-  <updated>2023-12-09T07:34:22.641Z</updated>
+  <updated>2023-12-10T13:12:15.511Z</updated>
   <id>https://chengcheng526.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mybatis扩展功能</title>
+    <link href="https://chengcheng526.github.io/2023/12/10/Mybatis%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/"/>
+    <id>https://chengcheng526.github.io/2023/12/10/Mybatis%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/</id>
+    <published>2023-12-10T11:34:18.000Z</published>
+    <updated>2023-12-10T13:12:15.511Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;1-MP的代码生成&quot;&gt;&lt;a href=&quot;#1-MP的代码生成&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="技术" scheme="https://chengcheng526.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="MybatisPlus" scheme="https://chengcheng526.github.io/tags/MybatisPlus/"/>
+    
+    <category term="java" scheme="https://chengcheng526.github.io/tags/java/"/>
+    
+    <category term="代码生成" scheme="https://chengcheng526.github.io/tags/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90/"/>
+    
+    <category term="开发工具" scheme="https://chengcheng526.github.io/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>MybatisPlus核心功能</title>
