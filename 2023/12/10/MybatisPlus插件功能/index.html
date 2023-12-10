@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+  
+
+    <head>
+      <meta charset="utf-8" />
+        
+      <meta name="description" content="ycc personal blog" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>MybatisPlus插件功能 |  ycc personal blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      
+<link rel="stylesheet" href="/css/fonts/remixicon.css">
+
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.staticfile.org/pace/1.2.4/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="ycc personal blog" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-MybatisPlus插件功能"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  MybatisPlus插件功能
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/12/10/MybatisPlus%E6%8F%92%E4%BB%B6%E5%8A%9F%E8%83%BD/" class="article-date">
+  <time datetime="2023-12-10T14:00:32.000Z" itemprop="datePublished">2023-12-10</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">8 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="1-MybatisPlus提供的插件"><a href="#1-MybatisPlus提供的插件" class="headerlink" title="1.MybatisPlus提供的插件"></a>1.MybatisPlus提供的插件</h1><h2 id="1-1-分页插件"><a href="#1-1-分页插件" class="headerlink" title="1.1 分页插件"></a>1.1 分页插件</h2><p>MybatisPlus提供了分页的插件，使用MP的分页插件可以简化项目开发中的分页需求.</p>
+<h3 id="1-1-1-分页插件的使用"><a href="#1-1-1-分页插件的使用" class="headerlink" title="1.1.1 分页插件的使用"></a>1.1.1 分页插件的使用</h3><h4 id="步骤一"><a href="#步骤一" class="headerlink" title="步骤一"></a>步骤一</h4><p>首先要在配置类中注册MybatisPlus的核心插件,同时添加分页插件:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MybatisConfig</span> &#123;    </span><br><span class="line">    <span class="meta">@Bean</span>    </span><br><span class="line">    <span class="keyword">public</span> MybatisPlusInterceptor <span class="title function_">mybatisPlusInterceptor</span><span class="params">()</span> &#123;      </span><br><span class="line">        <span class="comment">// 1.初始化核心插件</span></span><br><span class="line">        <span class="type">MybatisPlusInterceptor</span> <span class="variable">interceptor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MybatisPlusInterceptor</span>();    </span><br><span class="line">        <span class="comment">// 2.添加分页插件       </span></span><br><span class="line">        <span class="type">PaginationInnerInterceptor</span> <span class="variable">pageInterceptor</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PaginationInnerInterceptor</span>(DbType.MYSQL);        			    pageInterceptor.setMaxLimit(<span class="number">1000L</span>); <span class="comment">// 设置分页上限</span></span><br><span class="line">        interceptor.addInnerInterceptor(pageInterceptor);       </span><br><span class="line">        <span class="keyword">return</span> interceptor;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="步骤二"><a href="#步骤二" class="headerlink" title="步骤二"></a>步骤二</h4><p>完成了配置类后就可以使用分页的API了</p>
+<p><img src="https://pic.imgdb.cn/item/6575c6aac458853aef1716d9.jpg"></p>
+<h3 id="1-1-2-编写测试类测试"><a href="#1-1-2-编写测试类测试" class="headerlink" title="1.1.2 编写测试类测试"></a>1.1.2 编写测试类测试</h3><p>编写测试类测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 分页查询测试</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testPageQuery</span><span class="params">()</span>&#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">pageNo</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">       <span class="type">int</span> <span class="variable">pageSize</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">       <span class="comment">// 1.准备分页条件</span></span><br><span class="line">       Page&lt;User&gt; page = Page.of(pageNo, pageSize);</span><br><span class="line">       <span class="comment">// 1.1准备排序条件 true 为升序</span></span><br><span class="line">       page.addOrder(<span class="keyword">new</span> <span class="title class_">OrderItem</span>(<span class="string">&quot;balance&quot;</span>,<span class="literal">true</span>));</span><br><span class="line">       <span class="comment">// 1.2余额相等的情况下 按照id升序排序</span></span><br><span class="line">       page.addOrder(<span class="keyword">new</span> <span class="title class_">OrderItem</span>(<span class="string">&quot;id&quot;</span>,<span class="literal">true</span>));</span><br><span class="line">       <span class="comment">// 2.分页查询</span></span><br><span class="line">       Page&lt;User&gt; userPage = iUserService.page(page);</span><br><span class="line">       <span class="comment">// 3.解析</span></span><br><span class="line">       <span class="comment">// 总条数</span></span><br><span class="line">       <span class="type">long</span> <span class="variable">total</span> <span class="operator">=</span> userPage.getTotal();</span><br><span class="line">       <span class="comment">// 总页数</span></span><br><span class="line">       <span class="type">long</span> <span class="variable">pages</span> <span class="operator">=</span> userPage.getPages();</span><br><span class="line">       <span class="comment">// 总数据</span></span><br><span class="line">       List&lt;User&gt; users = userPage.getRecords();</span><br><span class="line">       System.out.println(<span class="string">&quot;查询起始页为:&quot;</span> + pageNo);</span><br><span class="line">       System.out.println(<span class="string">&quot;查询的页数为:&quot;</span> + pageSize);</span><br><span class="line">       System.out.println(<span class="string">&quot;查询的总条数为:&quot;</span> + total);</span><br><span class="line">       System.out.println(<span class="string">&quot;查询的总页数为:&quot;</span> + pages);</span><br><span class="line">       <span class="keyword">for</span> (User user : users) &#123;</span><br><span class="line">           System.out.println(user);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>如果查询出的结果中文显示为乱码，则按照下面的方法进行解决:</strong></p>
+<p>在SpringBoot整合Mybatis进行mapper测试查询时，发现返回的中文结果一直是乱码，无论修改yml配置文件还是数据库参数都无法解决，最后发现原因是项目中的SDK以及项目语言级别不对，应该设计JDK1.8，项目语言级别应为8.</p>
+<p>测试成功</p>
+<h3 id="1-1-3-总结"><a href="#1-1-3-总结" class="headerlink" title="1.1.3 总结"></a>1.1.3 总结</h3><p>总结MybatisPlus使用步骤:</p>
+<ol>
+<li>创建MybatisPlusConfog配置类，在配置类中声明MybatisPlusInterceptor拦截器方法</li>
+<li>创建分页插件并添加分页插件</li>
+<li>使用Page.of(pageNo,pageSize)方法传入页码和大小，返回Page&lt;&gt;对象并指定泛型,可以使用page.addOrder指定字段升序降序,true为升序</li>
+<li>使用userService.page(page)的分页方法</li>
+<li>使用page.get__()方法获取数据</li>
+</ol>
+<h2 id="1-2-通用分页实体"><a href="#1-2-通用分页实体" class="headerlink" title="1.2 通用分页实体"></a>1.2 通用分页实体</h2><p>上述分页只是一个简单的测试，但在实际开发中不会有那么简单的案例</p>
+<p>简单分页查询案例:</p>
+<p><strong>需求：遵循下面的接口规范，编写一个UserController接口，实现User的分页查询</strong></p>
+<p><img src="https://pic.imgdb.cn/item/6575cfdcc458853aef57071e.jpg"></p>
+<p><strong>返回结果</strong></p>
+<p><img src="https://pic.imgdb.cn/item/6575d01ec458853aef58cb96.jpg"></p>
+<p>由于分页需求不止查询用户需要，别的业务可能也需要，于是将分页功能单独封装为一个类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PageQuery</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 页码</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer pageNo;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 页大小</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer pageSize;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 排序字段</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String sortBy;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 升序降序 false降序 true升序</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> isAsc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在需要分页功能的类上继承这个方法即可</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserQuery</span> <span class="keyword">extends</span> <span class="title class_">PageQuery</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 姓名</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 状态</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer status;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 最低余额</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer minBalance;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 最高余额</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer maxBalance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>统一返回结果</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PageDTO</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 总条数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer total;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 总页数</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer pages;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回数据集合</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;T&gt; list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-1-编码实现分页查询"><a href="#1-2-1-编码实现分页查询" class="headerlink" title="1.2.1 编码实现分页查询"></a>1.2.1 编码实现分页查询</h3><ol>
+<li>创建业务层接口</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PageDTO&lt;UserVO&gt; <span class="title function_">queryUsersPage</span><span class="params">(UserQuery userQuery)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中的UserQuery为:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserQuery</span> <span class="keyword">extends</span> <span class="title class_">PageQuery</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 姓名</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 状态</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer status;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 最低余额</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer minBalance;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 最高余额</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Integer maxBalance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>实现业务层接口</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 分页查询</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> userQuery</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> PageDTO&lt;UserVO&gt; <span class="title function_">queryUsersPage</span><span class="params">(UserQuery userQuery)</span> &#123;</span><br><span class="line">		<span class="comment">// 先获取前端传来的姓名和账号状态</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> userQuery.getName();</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">status</span> <span class="operator">=</span> userQuery.getStatus();</span><br><span class="line">        <span class="comment">// 构建分页条件 传入前端传来的页码和分页大小</span></span><br><span class="line">        Page&lt;User&gt; page = Page.of(userQuery.getPageNo(), userQuery.getPageSize());</span><br><span class="line">        <span class="comment">// 设置排序条件</span></span><br><span class="line">        <span class="comment">// 设置条件</span></span><br><span class="line">        <span class="comment">// 使用工具类</span></span><br><span class="line">        <span class="keyword">if</span> (StrUtil.isBlank(userQuery.getSortBy()))&#123;</span><br><span class="line">            <span class="comment">// 排序条件为空，则按照更新时间排序</span></span><br><span class="line">            page.addOrder(<span class="keyword">new</span> <span class="title class_">OrderItem</span>(<span class="string">&quot;updateTime&quot;</span>,<span class="literal">false</span>));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 排序条件不为空，则按照指定字段排序</span></span><br><span class="line">            page.addOrder(<span class="keyword">new</span> <span class="title class_">OrderItem</span>(userQuery.getSortBy(),userQuery.isAsc()));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 分页查询</span></span><br><span class="line">        <span class="comment">// 使用MP的Lambda查询</span></span><br><span class="line">        Page&lt;User&gt; userPage = lambdaQuery().like(name != <span class="literal">null</span>, User::getUsername, name)</span><br><span class="line">                .eq(User::getStatus, status)</span><br><span class="line">                .between(userQuery.getMinBalance() != <span class="literal">null</span> &amp;&amp; userQuery.getMaxBalance() != <span class="literal">null</span></span><br><span class="line">                        ,User::getBalance, userQuery.getMinBalance(), userQuery.getMaxBalance())</span><br><span class="line">                .page(page);</span><br><span class="line">        <span class="comment">// 封装VO结果</span></span><br><span class="line">        PageDTO&lt;UserVO&gt; dto = <span class="keyword">new</span> <span class="title class_">PageDTO</span>&lt;&gt;();</span><br><span class="line">        dto.setTotal(userPage.getTotal());</span><br><span class="line">        dto.setPages(userPage.getPages());</span><br><span class="line">        <span class="comment">// 获取数据</span></span><br><span class="line">        List&lt;User&gt; users = userPage.getRecords();</span><br><span class="line">        <span class="comment">// 将users -&gt; userVo</span></span><br><span class="line">        <span class="keyword">if</span> (CollUtil.isEmpty(users))&#123;</span><br><span class="line">            <span class="comment">// 如果没查到</span></span><br><span class="line">            dto.setList(Collections.emptyList());</span><br><span class="line">            <span class="keyword">return</span> dto;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 拷贝UserVo</span></span><br><span class="line">        <span class="comment">// 使用工具类</span></span><br><span class="line">        List&lt;UserVO&gt; userVOS = BeanUtil.copyToList(users, UserVO.class);</span><br><span class="line">        dto.setList(userVOS);</span><br><span class="line">        <span class="comment">// 返回结果</span></span><br><span class="line">        <span class="keyword">return</span> dto;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中需要说明的是PageQuery封装了所有需求常见的分页条件，例如pageNo,pageSize,sortBy,isAsc等，在其他查询例如UserQuery中可以继承PageQuery.</p>
+<p>PageDTO封装了返回前端的数据，例如pages(总页数),totals总条数以及List&lt;?&gt;返回泛型类型数据集合.</p>
+<h2 id="1-3-插件功能-通用分页实体与MP转换"><a href="#1-3-插件功能-通用分页实体与MP转换" class="headerlink" title="1.3 插件功能-通用分页实体与MP转换"></a>1.3 插件功能-通用分页实体与MP转换</h2><p>我们自己封装了一部分的分页工具，但是在某些程度上来讲还是比较麻烦的。例如当我们拿到前端传来的UserQuery后还是需要我们自己去构建分页条件然后封装为Page对象，封装的过程比较麻烦，并且代码上与业务没有关系，所以逻辑都是通用的。于是我们可以封装工具类解决这个问题。另一个麻烦的地方是对查询条件的解析然后封装为DTO并判断是否为空，这里与业务逻辑没有关系，这里也需要做封装.</p>
+<p><strong>需求</strong></p>
+<ul>
+<li>在PageQuery中定义方法，将前端传来的PageQuery对象转换为MybatisPlus中的Page对象</li>
+<li>在PageDTO中定义方法，将MybatisPlus中的page结果转换为PageDTO结果.</li>
+</ul>
+<p>在实体类中定义方法是为了使逻辑更加清晰</p>
+<p>对PageQuery进行封装</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PageQuery</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 页码</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">Integer</span> <span class="variable">pageNo</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 页大小</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">Integer</span> <span class="variable">pageSize</span> <span class="operator">=</span> <span class="number">5</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 排序字段</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String sortBy;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 升序降序 false降序 true升序</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="variable">isAsc</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> orderItem 可变参数排序条件</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; Page&lt;T&gt; <span class="title function_">toMpPage</span><span class="params">(OrderItem ... orderItem)</span>&#123;</span><br><span class="line">        <span class="comment">// 构建分页条件</span></span><br><span class="line">        Page&lt;T&gt; page = Page.of(pageNo, pageSize);</span><br><span class="line">        <span class="comment">// 设置排序条件</span></span><br><span class="line">        <span class="comment">// 设置条件</span></span><br><span class="line">        <span class="keyword">if</span> (StrUtil.isBlank(getSortBy()))&#123;</span><br><span class="line">            <span class="comment">// 排序条件为空，则按照更新时间排序</span></span><br><span class="line">            page.addOrder(orderItem);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (orderItem != <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="comment">// 排序条件不为空，则按照指定字段排序</span></span><br><span class="line">            page.addOrder(<span class="keyword">new</span> <span class="title class_">OrderItem</span>(getSortBy(),isAsc()));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> page;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 按照更新时间降序</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; Page&lt;T&gt; <span class="title function_">toMpPageByUpdateTime</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> toMpPage(<span class="keyword">new</span> <span class="title class_">OrderItem</span>(<span class="string">&quot;update_time&quot;</span>,<span class="literal">false</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 按照创建时间降序</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; Page&lt;T&gt; <span class="title function_">toMpPageByCreateTime</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> toMpPage(<span class="keyword">new</span> <span class="title class_">OrderItem</span>(<span class="string">&quot;create_time&quot;</span>,<span class="literal">false</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 按照自定义字段进行升序或降序</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> defaultSortBy 自定义方法</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> isAsc 升序降序 true 升序 false：降序</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; Page&lt;T&gt; <span class="title function_">toMpPageByCustom</span><span class="params">(String defaultSortBy,<span class="type">boolean</span> isAsc)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> toMpPage(<span class="keyword">new</span> <span class="title class_">OrderItem</span>(defaultSortBy,isAsc));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对封装Vo进行封装代码进行封装</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * userPage转换为PageDTO</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> &lt;PO,VO&gt; PageDTO&lt;VO&gt; <span class="title function_">of</span><span class="params">(Page&lt;PO&gt; userPage,Class&lt;VO&gt; voClass)</span>&#123;</span><br><span class="line">       <span class="comment">// 封装VO结果</span></span><br><span class="line">       PageDTO&lt;VO&gt; dto = <span class="keyword">new</span> <span class="title class_">PageDTO</span>&lt;&gt;();</span><br><span class="line">       dto.setTotal(userPage.getTotal());</span><br><span class="line">       dto.setPages(userPage.getPages());</span><br><span class="line">       <span class="comment">// 获取数据</span></span><br><span class="line">       List&lt;PO&gt; users = userPage.getRecords();</span><br><span class="line">       <span class="comment">// 将users -&gt; userVo</span></span><br><span class="line">       <span class="keyword">if</span> (CollUtil.isEmpty(users))&#123;</span><br><span class="line">           <span class="comment">// 如果没查到</span></span><br><span class="line">           dto.setList(Collections.emptyList());</span><br><span class="line">           <span class="keyword">return</span> dto;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">// 拷贝UserVo</span></span><br><span class="line">       List&lt;VO&gt; userVOS = BeanUtil.copyToList(users, voClass);</span><br><span class="line">       dto.setList(userVOS);</span><br><span class="line">       <span class="keyword">return</span> dto;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后改善业务层代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 分页查询</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> userQuery</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> PageDTO&lt;UserVO&gt; <span class="title function_">queryUsersPage</span><span class="params">(UserQuery userQuery)</span> &#123;</span><br><span class="line"></span><br><span class="line">       <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> userQuery.getName();</span><br><span class="line">       <span class="type">Integer</span> <span class="variable">status</span> <span class="operator">=</span> userQuery.getStatus();</span><br><span class="line">       Page&lt;User&gt; page = userQuery.toMpPageByUpdateTime();</span><br><span class="line">       <span class="comment">// 分页查询</span></span><br><span class="line">       Page&lt;User&gt; userPage = lambdaQuery().like(name != <span class="literal">null</span>, User::getUsername, name)</span><br><span class="line">               .eq(User::getStatus, status)</span><br><span class="line">               .between(userQuery.getMinBalance() != <span class="literal">null</span> &amp;&amp; userQuery.getMaxBalance() != <span class="literal">null</span></span><br><span class="line">                       ,User::getBalance, userQuery.getMinBalance(), userQuery.getMaxBalance())</span><br><span class="line">               .page(page);</span><br><span class="line">       <span class="comment">// 封装VO结果返回</span></span><br><span class="line">       <span class="keyword">return</span> PageDTO.of(userPage,UserVO.class);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>MybatisPlus学习结束</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chengcheng526.github.io/2023/12/10/MybatisPlus%E6%8F%92%E4%BB%B6%E5%8A%9F%E8%83%BD/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MybatisPlus/" rel="tag">MybatisPlus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag">插件</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2023/12/10/Mybatis%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">MybatisPlus扩展功能</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.staticfile.org/valine/1.4.16/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "0m4PcLMDC1rwagX2HGihOzYZ-gzGzoHsz",
+    app_key: "TTbloOjjewIWoHnLHmvbRr9r",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "如果回复不及时 请联系2098116562@qq.com",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+  
+   
+    <script src="https://cdn.staticfile.org/twikoo/1.4.18/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: ""
+        })
+    </script>
+ 
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+        <i class="ri-heart-fill heart_icon"></i> yang
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="ycc personal blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">相册</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.staticfile.org/jquery-modal/0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="https://cdn.staticfile.org/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+ 
+<script src="/js/clickLove.js"></script>
+ 
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+<!-- 自动提交 -->
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+
+
+    
+    
+
+  </div>
+</body>
+
+</html>
