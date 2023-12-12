@@ -6,7 +6,7 @@
   <link href="https://chengcheng526.github.io/atom.xml" rel="self"/>
   
   <link href="https://chengcheng526.github.io/"/>
-  <updated>2023-12-11T14:16:00.132Z</updated>
+  <updated>2023-12-12T15:11:15.615Z</updated>
   <id>https://chengcheng526.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SpringBoot中的参数传递</title>
+    <link href="https://chengcheng526.github.io/2023/12/12/SpringBoot%E4%B8%AD%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/"/>
+    <id>https://chengcheng526.github.io/2023/12/12/SpringBoot%E4%B8%AD%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/</id>
+    <published>2023-12-12T12:38:39.000Z</published>
+    <updated>2023-12-12T15:11:15.615Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;今天复习SpringBoot项目中前后端参数传递的问题，主要是以下几个方面:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Get 方式发送单个参数&lt;/li&gt;
+&lt;li&gt;Get</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://chengcheng526.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="技术" scheme="https://chengcheng526.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+    <category term="java" scheme="https://chengcheng526.github.io/tags/java/"/>
+    
+    <category term="SprinigBoot" scheme="https://chengcheng526.github.io/tags/SprinigBoot/"/>
+    
+  </entry>
   
   <entry>
     <title>基于SpringBoot、MybatisPlus以及knife4j的MP分页查询demo</title>
