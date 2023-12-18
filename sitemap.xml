@@ -110,13 +110,6 @@
 
   
   <url>
-    <loc>https://chengcheng526.github.io/tags/%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2023-12-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://chengcheng526.github.io/tags/MybatisPlus/</loc>
     <lastmod>2023-12-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -124,7 +117,21 @@
   </url>
   
   <url>
+    <loc>https://chengcheng526.github.io/tags/%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2023-12-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://chengcheng526.github.io/tags/java/</loc>
+    <lastmod>2023-12-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chengcheng526.github.io/tags/%E6%8F%92%E4%BB%B6/</loc>
     <lastmod>2023-12-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -145,7 +152,7 @@
   </url>
   
   <url>
-    <loc>https://chengcheng526.github.io/tags/%E6%8F%92%E4%BB%B6/</loc>
+    <loc>https://chengcheng526.github.io/tags/SprinigBoot/</loc>
     <lastmod>2023-12-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -160,13 +167,6 @@
   
   <url>
     <loc>https://chengcheng526.github.io/tags/knife4j/</loc>
-    <lastmod>2023-12-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chengcheng526.github.io/tags/SprinigBoot/</loc>
     <lastmod>2023-12-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
