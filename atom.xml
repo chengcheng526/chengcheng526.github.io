@@ -6,7 +6,7 @@
   <link href="https://chengcheng526.github.io/atom.xml" rel="self"/>
   
   <link href="https://chengcheng526.github.io/"/>
-  <updated>2023-12-12T15:15:13.125Z</updated>
+  <updated>2023-12-18T16:08:26.625Z</updated>
   <id>https://chengcheng526.github.io/</id>
   
   <author>
@@ -15,6 +15,49 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>实战指南:使用Gateway、MybatisPlus和Nacos实现登录、JWT身份验证以及信息查询</title>
+    <link href="https://chengcheng526.github.io/2023/12/17/%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97-%E4%BD%BF%E7%94%A8Gateway%E3%80%81MybatisPlus%E5%92%8CNacos%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E3%80%81JWT%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E4%BB%A5%E5%8F%8A%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2/"/>
+    <id>https://chengcheng526.github.io/2023/12/17/%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97-%E4%BD%BF%E7%94%A8Gateway%E3%80%81MybatisPlus%E5%92%8CNacos%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E3%80%81JWT%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%E4%BB%A5%E5%8F%8A%E4%BF%A1%E6%81%AF%E6%9F%A5%E8%AF%A2/</id>
+    <published>2023-12-17T15:12:42.000Z</published>
+    <updated>2023-12-18T16:08:26.625Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;1-需求分析&quot;&gt;&lt;a href=&quot;#1-需求分析&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学习" scheme="https://chengcheng526.github.io/categories/%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="MybatisPlus" scheme="https://chengcheng526.github.io/tags/MybatisPlus/"/>
+    
+    <category term="java" scheme="https://chengcheng526.github.io/tags/java/"/>
+    
+    <category term="SpringCloud" scheme="https://chengcheng526.github.io/tags/SpringCloud/"/>
+    
+    <category term="网关" scheme="https://chengcheng526.github.io/tags/%E7%BD%91%E5%85%B3/"/>
+    
+    <category term="Gateway" scheme="https://chengcheng526.github.io/tags/Gateway/"/>
+    
+    <category term="Nacos" scheme="https://chengcheng526.github.io/tags/Nacos/"/>
+    
+    <category term="Knife4j" scheme="https://chengcheng526.github.io/tags/Knife4j/"/>
+    
+    <category term="Token" scheme="https://chengcheng526.github.io/tags/Token/"/>
+    
+    <category term="JWT身份验证" scheme="https://chengcheng526.github.io/tags/JWT%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81/"/>
+    
+    <category term="Docker" scheme="https://chengcheng526.github.io/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>SpringBoot中的参数传递</title>
